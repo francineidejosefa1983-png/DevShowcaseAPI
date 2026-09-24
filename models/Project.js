@@ -25,11 +25,20 @@ const Project = sequelize.define("Project", {
 
   url: {
     type: DataTypes.STRING,
-    allowNull: true,
-    validate: {
-      isUrl: true
-    }
-  }
+    allowNull: true
+},
+
+upvotes: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+},
+
+averageRating: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+    defaultValue: 0
+}
 });
 
 module.exports = Project;

@@ -22,10 +22,11 @@ const Feedback = sequelize.define("Feedback", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+
   projectId: {
     type: DataTypes.INTEGER,
     allowNull: false
-}
+  }
 });
 
 module.exports = Feedback;

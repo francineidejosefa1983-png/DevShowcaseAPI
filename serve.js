@@ -1,4 +1,5 @@
 const express = require("express");
+const { swaggerUi, swaggerDocument } = require("./swagger");
 const cors = require("cors");
 const sequelize = require("./config/database");
 
@@ -8,6 +9,7 @@ const feedbackRoutes = require("./routes/feedback.routes");
 const projectRoutes = require("./routes/project.routes");
 const technologyRoutes = require("./routes/technology.routes");
 const app = express();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const PORT = 3001;
 
 app.use(express.json());
@@ -97,6 +99,23 @@ try {
         erro: "Erro ao criar projeto"
     });
 }
+});
+// Tratamento global para rotas não encontradas
+app.use((req, res) => {
+    res.status(404).json({
+        erro: "Rota não encontrada"
+    });
+});
+
+// Tratamento global de erros
+app.use((err, req, res, next) => {
+    console.error("ERRO GLOBAL:", err);
+
+    const status = err.status || err.statusCode || 500;
+
+    res.status(status).json({
+        erro: err.message || "Erro interno do servidor"
+    });
 });
 sequelize.sync()
   .then(() => {
