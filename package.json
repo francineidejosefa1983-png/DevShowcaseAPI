@@ -4,14 +4,15 @@
   "description": "",
   "main": "serve.js",
   "scripts": {
-  "start": "node serve.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+    "start": "node serve.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "sequelize": "^6.37.8",
