@@ -10,7 +10,7 @@ const projectRoutes = require("./routes/project.routes");
 const technologyRoutes = require("./routes/technology.routes");
 const app = express();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
@@ -121,7 +121,7 @@ sequelize.sync()
   .then(() => {
     console.log("Banco de dados conectado e tabelas criadas!");
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
  console.log(`Servidor rodando em http://localhost:${PORT}`);
 
     });
